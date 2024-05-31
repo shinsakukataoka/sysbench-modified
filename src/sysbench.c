@@ -103,9 +103,7 @@ sb_arg_t general_args[] =
   SB_OPT("thread-stack-size", "size of stack per thread", "64K", SIZE),
   SB_OPT("thread-init-timeout", "wait time in seconds for worker threads to initialize", "30", INT),
   SB_OPT("rate", "average transactions rate. 0 for unlimited rate", "0", INT),
-  SB_OPT("report-interval", "periodically report intermediate statistics with "
-         "a specified interval in seconds. 0 disables intermediate reports",
-         "0", INT),
+  SB_OPT("report-interval", "periodically report intermediate statistics with a specified interval in seconds. 0 disables intermediate reports", "0", DOUBLE),
   SB_OPT("report-checkpoints", "dump full statistics and reset all counters at "
          "specified points in time. The argument is a list of comma-separated "
          "values representing the amount of time in seconds elapsed from start "
@@ -1383,7 +1381,7 @@ static int init(void)
 
   sb_globals.tx_rate = sb_get_value_int("rate");
 
-  sb_globals.report_interval = sb_get_value_int("report-interval");
+  sb_globals.report_interval = sb_get_value_double("report-interval");
 
   sb_globals.n_checkpoints = 0;
   checkpoints_list = sb_get_value_list("report-checkpoints");
